@@ -1,0 +1,83 @@
+<div class="card card-body col-md-4 float-left" *ngFor="let tasks of service.totalTask">
+    <h3 class="text-center text-white bg-dark">{{tasks.read}}</h3>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal"(click)="selectTask(tasks)">
+        Edit
+    </button><br>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="" method="POST" #form="ngForm" (ngSubmit)="updateTask(form.value)">
+                        <h1 class="text-center text-white bg-dark">Add Task</h1>
+                        <div class="form-group">
+                            <input type="hidden" name="id" class="form-control" placeholder="enter id" #id="ngModel"
+                                ngModel [(ngModel)]='selectedTask._id'>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="text" name="read" id="" placeholder="Enter the Task" class="form-control"
+                                #read="ngModel" ngModel [(ngModel)]="selectedTask.read" >
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-outline-success float-right">Update Task</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-outline-danger" (click)="deleteTask(tasks._id)">delete</button><br>
+    <button type="button" class="btn btn-primary" >
+        Inprogress...
+    </button><br>
+    <button type="button" class="btn btn-success" (click)="sendCompletedTask(tasks)">
+        completed
+    </button>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="card card-body">
+    <table class="table table-bordered table-hover mt-4 ">
+        <thead class=" bg-white text-black">
+            <tr>
+                <th>task</th>
+                <th>completed</th>
+                <th>Inprogress</th>
+                <th>ToDolist</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let tasks of service.task;index as i">
+                <td>{{tasks.read}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div> -->
